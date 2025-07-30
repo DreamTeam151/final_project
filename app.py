@@ -5,9 +5,11 @@ import joblib
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import load_model
 
-# Загружаем модель 
-model = load_model('ANN_model.keras')
-print(model.input_shape)
+@st.cache_resource
+def load_ann_model():
+    return load_model('ANN_model.keras')
+
+model = load_ann_model()
 
 # Загружаем scaler
 scaler = joblib.load('scaler.pkl')
